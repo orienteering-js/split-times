@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { runnerLegValidator } from "./runner-leg.js";
+import { runnerLegValidator } from "@models/runner-leg.ts";
 
 export const runnerTrackValidator = z.object({
   lats: z.array(z.number()),

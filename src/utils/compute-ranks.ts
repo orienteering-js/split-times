@@ -1,5 +1,5 @@
 import { sortRunners } from "@utils/shared.ts";
-import { Runner } from "@models/runner.ts";
+import type { Runner } from "@models/runner.ts";
 
 export default function computeRunnersRanks(runners: Runner[]) {
   const clonedRunners = structuredClone(runners).sort(sortRunners);

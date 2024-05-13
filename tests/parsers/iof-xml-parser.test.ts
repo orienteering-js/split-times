@@ -1,9 +1,10 @@
+import type { Runner } from "@models/runner.ts";
+import { parseIofXmlSplitTimesFile } from "@parsers/iof-xml-parser.ts";
+import { expect } from "@std/expect";
+import { DOMParser } from "linkedom";
+import { IOF_XML_2_SPLIT_TIMES_BIS } from "./mocks/iof-xml-2-split-times-bis.ts";
 import { IOF_XML_2_SPLIT_TIMES } from "./mocks/iof-xml-2-split-times.ts";
 import { IOF_XML_3_SPLIT_TIMES } from "./mocks/iof-xml-3-split-times.ts";
-import { parseIofXmlSplitTimesFile } from "@parsers/iof-xml-parser.ts";
-import type { Runner } from "@models/runner.ts";
-import { IOF_XML_2_SPLIT_TIMES_BIS } from "./mocks/iof-xml-2-split-times-bis.ts";
-import { expect } from "@std/expect";
 
 Deno.test("parseIofXmlSplitTimesFile()", (t) => {
   const parser = new DOMParser();

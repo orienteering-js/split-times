@@ -1,4 +1,4 @@
-import { RunnerLeg } from "@models/runner-leg.ts";
+import type { RunnerLeg } from "@models/runner-leg.ts";
 
 export const EMPTY_RUNNER_LEG: RunnerLeg = {
   startControlCode: "0",

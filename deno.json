@@ -7,10 +7,11 @@
     "@parsers/": "./src/parsers/",
     "@std/expect": "jsr:@std/expect@^0.224.0",
     "@utils/": "./src/utils/",
+    "linkedom": "npm:linkedom@^0.18.0",
     "zod": "npm:zod@^3.21.4"
   },
   "compilerOptions": {
     "lib": ["deno.ns", "dom"],
-    "importsNotUsedAsValues": true
+    "verbatimModuleSyntax": true
   }
 }
