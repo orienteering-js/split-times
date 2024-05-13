@@ -1,0 +1,16 @@
+{
+  "name": "@orienteering-js/split-times",
+  "version": "0.0.1",
+  "exports": "./src/mod.ts",
+  "imports": {
+    "@models/": "./src/models/",
+    "@parsers/": "./src/parsers/",
+    "@std/expect": "jsr:@std/expect@^0.224.0",
+    "@utils/": "./src/utils/",
+    "zod": "npm:zod@^3.21.4"
+  },
+  "compilerOptions": {
+    "lib": ["deno.ns", "dom"],
+    "importsNotUsedAsValues": true
+  }
+}
