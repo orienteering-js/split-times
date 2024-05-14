@@ -1,3 +1,6 @@
+/**
+ * RunnerLeg type used in the Runner type legs property
+ */
 export interface RunnerLeg {
   startControlCode: string;
   finishControlCode: string;
