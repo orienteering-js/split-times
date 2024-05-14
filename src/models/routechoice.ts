@@ -1,21 +1,28 @@
 import { z } from "zod";
 
-export const routeChoicesStatisticValidator = z.object({
-  fastestTime: z.optional(z.number()),
-  firstQuartileTime: z.optional(z.number()),
-  numberOfRunners: z.optional(z.number()),
-  color: z.optional(z.string()),
-});
+export const routeChoicesStatisticValidator: z.ZodType<RouteChoicesStatistic> =
+  z.object({
+    fastestTime: z.optional(z.number()),
+    firstQuartileTime: z.optional(z.number()),
+    numberOfRunners: z.optional(z.number()),
+    color: z.optional(z.string()),
+  });
 
-export const routechoiceWithoutTrackValidator = z.object({
+export const routechoiceWithoutTrackValidator: z.ZodType<RoutechoiceWithoutTrack> =
+  z.object({
+    id: z.string().uuid(),
+    name: z.string(),
+    color: z.string().startsWith("#"),
+    length: z.number(),
+    statistics: routeChoicesStatisticValidator.optional(),
+  });
+
+export const routechoiceValidator: z.ZodType<Routechoice> = z.object({
   id: z.string().uuid(),
   name: z.string(),
   color: z.string().startsWith("#"),
   length: z.number(),
   statistics: routeChoicesStatisticValidator.optional(),
-});
-
-export const routechoiceValidator = routechoiceWithoutTrackValidator.extend({
   track: z.array(z.tuple([z.number(), z.number()])),
 });
 

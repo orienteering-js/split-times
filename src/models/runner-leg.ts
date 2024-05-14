@@ -2,7 +2,7 @@ import { z } from "zod";
 import type { Routechoice } from "@models/routechoice.ts";
 import { routechoiceValidator } from "@models/routechoice.ts";
 
-export const runnerLegValidator = z.object({
+export const runnerLegValidator: z.ZodType<RunnerLeg> = z.object({
   startControlCode: z.string(),
   finishControlCode: z.string(),
   timeOverall: z.number(),

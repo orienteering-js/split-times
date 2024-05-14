@@ -1,16 +1,21 @@
 import { z } from "zod";
-import { runnerLegValidator } from "@models/runner-leg.ts";
+import { runnerLegValidator, type RunnerLeg } from "@models/runner-leg.ts";
 
-export const runnerTrackValidator = z.object({
+export const runnerTrackValidator: z.ZodType<RunnerTrack> = z.object({
   lats: z.array(z.number()),
   lons: z.array(z.number()),
   times: z.array(z.number()),
   color: z.string().startsWith("#"),
 });
 
-export type RunnerTrack = z.infer<typeof runnerTrackValidator>;
+export type RunnerTrack = {
+  lats: number[];
+  lons: number[];
+  times: number[];
+  color: string;
+};
 
-export const runnerValidator = z.object({
+export const runnerValidator: z.ZodType<Runner> = z.object({
   id: z.string().uuid(),
   trackingDeviceId: z.string().nullable(),
   userId: z.string().nullable(),
@@ -27,4 +32,19 @@ export const runnerValidator = z.object({
   timeOffset: z.number(),
 });
 
-export type Runner = z.infer<typeof runnerValidator>;
+export type Runner = {
+  id: string;
+  trackingDeviceId: string | null;
+  userId: string | null;
+  status: "ok" | "not-ok";
+  firstName: string;
+  lastName: string;
+  startTime: number;
+  time: number | null;
+  legs: (RunnerLeg | null)[];
+  rank: number | null;
+  timeBehind: number | null;
+  totalTimeLost: number;
+  track: RunnerTrack | null;
+  timeOffset: number;
+};
