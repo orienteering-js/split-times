@@ -1,12 +1,13 @@
+import type { ValueOrError } from "@models/error.ts";
 import type { RunnerLeg } from "@models/runner-leg.ts";
 import type { Runner } from "@models/runner.ts";
-import type { ValueOrError } from "@models/splittimes-error.model.ts";
 import { computeSplitsRanksMistakes } from "@utils/compute-splits-ranks-mistakes.ts";
 import { EMPTY_RUNNER_LEG } from "@utils/empty-runner-leg.ts";
 import { getStartControlCode } from "@utils/shared.ts";
 
 /**
  * Parse an IOF XML 3.0 file an return an array of runners of the given class
+ *
  * @param xmlDocument Returned by new DOMParser().parseFromString("...", "text/xml")
  * Works with linkedom's DOMParser in non browser environment, even if Typescript will
  * complain with the returned type.
@@ -158,8 +159,6 @@ function getRunners(
 
     runners.push({
       id,
-      userId: null,
-      trackingDeviceId: null,
       status,
       firstName: firstName ?? "",
       lastName: lastName ?? "",
@@ -169,8 +168,6 @@ function getRunners(
       rank: null,
       timeBehind: null,
       totalTimeLost: 0,
-      track: null,
-      timeOffset: 0,
     });
   }
 

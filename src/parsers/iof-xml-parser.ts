@@ -1,7 +1,7 @@
 import type { Runner } from "@models/runner.ts";
-import type { ValueOrError } from "@models/splittimes-error.model.ts";
-import { parseIOFXML2SplitTimesFile } from "./iof-xml-2-parser.ts";
-import { parseIOFXML3SplitTimesFile } from "./iof-xml-3-parser.ts";
+import type { ValueOrError } from "@models/error.ts";
+import { parseIOFXML2SplitTimesFile } from "@parsers/iof-xml-2-parser.ts";
+import { parseIOFXML3SplitTimesFile } from "@parsers/iof-xml-3-parser.ts";
 
 /**
  * Parse an IOF XML 2.x file an return an array of runners of the given class
@@ -41,7 +41,7 @@ export function parseIofXmlSplitTimesFile(
     }
 
     return [null, { code: "INVALID_FORMAT", message: "Invalid Format" }];
-  } catch (e) {
+  } catch (_) {
     return [
       null,
       { code: "UNKNOWN_ERROR", message: "An unknown error occured." },

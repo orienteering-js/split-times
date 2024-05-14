@@ -1,6 +1,6 @@
-import type { RunnerForSort } from "@models/runner-for-sort.model.ts";
+import type { ValueOrError } from "@models/error.ts";
+import type { RunnerForSort } from "@models/runner-for-sort.ts";
 import type { Runner } from "@models/runner.ts";
-import type { ValueOrError } from "@models/splittimes-error.model.ts";
 import type { SupermanSplit } from "@models/superman.ts";
 import { sortRunners } from "@utils/shared.ts";
 

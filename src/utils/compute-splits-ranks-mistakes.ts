@@ -1,5 +1,5 @@
+import type { ValueOrError } from "@models/error.ts";
 import type { Runner } from "@models/runner.ts";
-import type { ValueOrError } from "@models/splittimes-error.model.ts";
 import computeRunnersMistakes from "@utils/compute-mistakes.ts";
 import { computeOverallSplitRanks } from "@utils/compute-overall-split-ranks.ts";
 import computeRunnersRanks from "@utils/compute-ranks.ts";

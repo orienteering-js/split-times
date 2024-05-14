@@ -1,6 +1,6 @@
-import type { RunnerForSort } from "@models/runner-for-sort.model.ts";
+import type { RunnerForSort } from "@models/runner-for-sort.ts";
 import type { Runner } from "@models/runner.ts";
-import type { ValueOrError } from "@models/splittimes-error.model.ts";
+import type { ValueOrError } from "@models/error.ts";
 
 export function arrayEquals(a: unknown[], b: unknown[]) {
   return (

@@ -12,7 +12,4 @@ export const EMPTY_RUNNER_LEG: RunnerLeg = {
   timeBehindSuperman: 0,
   isMistake: false,
   timeLoss: 0,
-  routeChoiceTimeLoss: null,
-  detectedRouteChoice: null,
-  manualRouteChoice: null,
 };

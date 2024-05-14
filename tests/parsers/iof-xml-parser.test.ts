@@ -108,9 +108,6 @@ const expectedOk2 = {
       timeBehindSuperman: 0,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "31",
@@ -124,9 +121,6 @@ const expectedOk2 = {
       timeBehindSuperman: 0,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "32",
@@ -140,9 +134,6 @@ const expectedOk2 = {
       timeBehindSuperman: 4,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "33",
@@ -156,9 +147,6 @@ const expectedOk2 = {
       timeBehindSuperman: 5,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "34",
@@ -172,9 +160,6 @@ const expectedOk2 = {
       timeBehindSuperman: 5,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "37",
@@ -188,9 +173,6 @@ const expectedOk2 = {
       timeBehindSuperman: 6,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "38",
@@ -204,9 +186,6 @@ const expectedOk2 = {
       timeBehindSuperman: 8,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "39",
@@ -220,9 +199,6 @@ const expectedOk2 = {
       timeBehindSuperman: 8,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "40",
@@ -236,9 +212,6 @@ const expectedOk2 = {
       timeBehindSuperman: 8,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "41",
@@ -252,9 +225,6 @@ const expectedOk2 = {
       timeBehindSuperman: 8,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "42",
@@ -268,9 +238,6 @@ const expectedOk2 = {
       timeBehindSuperman: 8,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "43",
@@ -284,9 +251,6 @@ const expectedOk2 = {
       timeBehindSuperman: 13,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "44",
@@ -300,9 +264,6 @@ const expectedOk2 = {
       timeBehindSuperman: 13,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "45",
@@ -316,9 +277,6 @@ const expectedOk2 = {
       timeBehindSuperman: 13,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "46",
@@ -332,9 +290,6 @@ const expectedOk2 = {
       timeBehindSuperman: 13,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "3",
@@ -348,9 +303,6 @@ const expectedOk2 = {
       timeBehindSuperman: 13,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
   ],
   rank: 1,
@@ -362,14 +314,11 @@ const expectedOk2 = {
 
 const expectedNotOK3: Runner = {
   id: "48",
-  trackingDeviceId: null,
-  userId: null,
   status: "not-ok",
   firstName: "Angus",
   lastName: "Haines",
   startTime: 1659525360,
   time: null,
-  timeOffset: 0,
   legs: [
     {
       startControlCode: "start",
@@ -383,9 +332,6 @@ const expectedNotOK3: Runner = {
       timeBehindSuperman: 52,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "101",
@@ -399,9 +345,6 @@ const expectedNotOK3: Runner = {
       timeBehindSuperman: 587,
       isMistake: true,
       timeLoss: 471,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "105",
@@ -415,9 +358,6 @@ const expectedNotOK3: Runner = {
       timeBehindSuperman: 1069,
       isMistake: true,
       timeLoss: 386,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "107",
@@ -431,9 +371,6 @@ const expectedNotOK3: Runner = {
       timeBehindSuperman: 1089,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "109",
@@ -447,9 +384,6 @@ const expectedNotOK3: Runner = {
       timeBehindSuperman: 1114,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     null,
     null,
@@ -465,9 +399,6 @@ const expectedNotOK3: Runner = {
       timeBehindSuperman: 1160,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "116",
@@ -481,9 +412,6 @@ const expectedNotOK3: Runner = {
       timeBehindSuperman: 1253,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "118",
@@ -497,9 +425,6 @@ const expectedNotOK3: Runner = {
       timeBehindSuperman: 1288,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "121",
@@ -513,9 +438,6 @@ const expectedNotOK3: Runner = {
       timeBehindSuperman: 1324,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "123",
@@ -529,9 +451,6 @@ const expectedNotOK3: Runner = {
       timeBehindSuperman: 1373,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "125",
@@ -545,9 +464,6 @@ const expectedNotOK3: Runner = {
       timeBehindSuperman: 1391,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "127",
@@ -561,9 +477,6 @@ const expectedNotOK3: Runner = {
       timeBehindSuperman: 1527,
       isMistake: true,
       timeLoss: 82,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "130",
@@ -577,28 +490,21 @@ const expectedNotOK3: Runner = {
       timeBehindSuperman: 1556,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     null,
   ],
   rank: null,
   timeBehind: null,
   totalTimeLost: 0,
-  track: null,
 };
 
 const expectedOK3: Runner = {
   id: "1",
-  trackingDeviceId: null,
-  userId: null,
   status: "ok",
   firstName: "Miika",
   lastName: "Kirmula",
   startTime: 1659529800,
   time: 1765,
-  timeOffset: 0,
   legs: [
     {
       startControlCode: "start",
@@ -612,9 +518,6 @@ const expectedOK3: Runner = {
       timeBehindSuperman: 3,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "101",
@@ -628,9 +531,6 @@ const expectedOK3: Runner = {
       timeBehindSuperman: 11,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "105",
@@ -644,9 +544,6 @@ const expectedOK3: Runner = {
       timeBehindSuperman: 55,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "107",
@@ -660,9 +557,6 @@ const expectedOK3: Runner = {
       timeBehindSuperman: 59,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "109",
@@ -676,9 +570,6 @@ const expectedOK3: Runner = {
       timeBehindSuperman: 108,
       isMistake: true,
       timeLoss: 42,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "110",
@@ -692,9 +583,6 @@ const expectedOK3: Runner = {
       timeBehindSuperman: 108,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "113",
@@ -708,9 +596,6 @@ const expectedOK3: Runner = {
       timeBehindSuperman: 109,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "115",
@@ -724,9 +609,6 @@ const expectedOK3: Runner = {
       timeBehindSuperman: 114,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "116",
@@ -740,9 +622,6 @@ const expectedOK3: Runner = {
       timeBehindSuperman: 118,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "118",
@@ -756,9 +635,6 @@ const expectedOK3: Runner = {
       timeBehindSuperman: 128,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "121",
@@ -772,9 +648,6 @@ const expectedOK3: Runner = {
       timeBehindSuperman: 128,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "123",
@@ -788,9 +661,6 @@ const expectedOK3: Runner = {
       timeBehindSuperman: 129,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "125",
@@ -804,9 +674,6 @@ const expectedOK3: Runner = {
       timeBehindSuperman: 145,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "127",
@@ -820,9 +687,6 @@ const expectedOK3: Runner = {
       timeBehindSuperman: 145,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "130",
@@ -836,9 +700,6 @@ const expectedOK3: Runner = {
       timeBehindSuperman: 145,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
     {
       startControlCode: "100",
@@ -852,13 +713,9 @@ const expectedOK3: Runner = {
       timeBehindSuperman: 149,
       isMistake: false,
       timeLoss: 0,
-      routeChoiceTimeLoss: null,
-      detectedRouteChoice: null,
-      manualRouteChoice: null,
     },
   ],
   rank: 1,
   timeBehind: 0,
   totalTimeLost: 0,
-  track: null,
 };
