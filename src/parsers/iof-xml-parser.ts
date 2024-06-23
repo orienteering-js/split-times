@@ -4,7 +4,7 @@ import { parseIOFXML2SplitTimesFile } from "@parsers/iof-xml-2-parser.ts";
 import { parseIOFXML3SplitTimesFile } from "@parsers/iof-xml-3-parser.ts";
 
 /**
- * Parse an IOF XML 2.x file an return an array of runners of the given class
+ * Parse an IOF XML file an return an array of runners of the given class
  *
  * @param xmlDocument Returned by new DOMParser().parseFromString("...", "text/xml")
  * Works with linkedom's DOMParser in non browser environment, even if Typescript will

@@ -11,7 +11,7 @@ export function computeOverallSplitRanks(
 ): ValueOrError<Runner[]> {
   const clonedRunners = structuredClone(runners);
 
-  const course: string[] = [];
+  const course: { startControlCode: string; finishControlCode: string }[] = [];
 
   for (const leg of clonedRunners[0].legs) {
     if (leg === null) {
@@ -24,7 +24,10 @@ export function computeOverallSplitRanks(
       ];
     }
 
-    course.push(leg.finishControlCode);
+    course.push({
+      startControlCode: leg.startControlCode,
+      finishControlCode: leg.finishControlCode,
+    });
   }
 
   // For every legs of every runners calculate ranking and time behind
@@ -33,7 +36,13 @@ export function computeOverallSplitRanks(
 
     // Make an array with splits and id for one leg
     const legSplits: RunnerForSort[] = clonedRunners.map((runner) => {
-      const lg = runner.legs.find((l) => l?.finishControlCode === leg);
+      if (leg === null) return { id: runner.id, time: null, rankSplit: 0 };
+
+      const lg = runner.legs.find(
+        (l) =>
+          l?.finishControlCode === leg.finishControlCode &&
+          l?.startControlCode === leg.startControlCode
+      );
 
       const time = lg !== null && lg !== undefined ? lg.timeOverall : null;
       return { id: runner.id, time, rankSplit: 0 };

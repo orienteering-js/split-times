@@ -8,8 +8,14 @@ export function computeSplitRanksAndTimeBehind(
   runners: Runner[]
 ): ValueOrError<[Runner[], SupermanSplit[]]> {
   const clonedRunners = structuredClone(runners);
+
   const course = clonedRunners[0].legs.map((leg) =>
-    leg === null ? null : leg.finishControlCode
+    leg === null
+      ? null
+      : {
+          startControlCode: leg.startControlCode,
+          finishControlCode: leg.finishControlCode,
+        }
   );
 
   const supermanSplits: SupermanSplit[] = [];
@@ -20,7 +26,13 @@ export function computeSplitRanksAndTimeBehind(
 
     // Make an array with splits and id for one leg
     const legSplits: RunnerForSort[] = clonedRunners.map((runner) => {
-      const lg = runner.legs.find((l) => l?.finishControlCode === leg);
+      if (leg === null) return { id: runner.id, time: null, rankSplit: 0 };
+
+      const lg = runner.legs.find(
+        (l) =>
+          l?.finishControlCode === leg.finishControlCode &&
+          l?.startControlCode === leg.startControlCode
+      );
 
       const time = lg === undefined || lg === null ? null : lg.time;
       return { id: runner.id, time, rankSplit: 0 };
