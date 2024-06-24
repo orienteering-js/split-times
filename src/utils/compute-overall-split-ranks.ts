@@ -5,44 +5,33 @@ import type { SupermanSplit } from "@models/superman.ts";
 import { computeRanksplit } from "@utils/compute-split-ranks-time-behind.ts";
 import { sortRunners } from "@utils/shared.ts";
 
+const FIRST_RUNNER_NOT_COMPLETE_MSG =
+  "First runner sould have a complete course";
+
 export function computeOverallSplitRanks(
   runners: Runner[],
   supermanSplits: SupermanSplit[]
 ): ValueOrError<Runner[]> {
   const clonedRunners = structuredClone(runners);
 
-  const course: { startControlCode: string; finishControlCode: string }[] = [];
-
-  for (const leg of clonedRunners[0].legs) {
-    if (leg === null) {
-      return [
-        null,
-        {
-          code: "FIRST_RUNNER_NOT_COMPLETE",
-          message: "At least one runner sould have a complete course",
-        },
-      ];
-    }
-
-    course.push({
-      startControlCode: leg.startControlCode,
-      finishControlCode: leg.finishControlCode,
-    });
+  if (
+    clonedRunners.length === 0 ||
+    clonedRunners[0].legs.some((l) => l === null)
+  ) {
+    return [
+      null,
+      {
+        code: "FIRST_RUNNER_NOT_COMPLETE",
+        message: FIRST_RUNNER_NOT_COMPLETE_MSG,
+      },
+    ];
   }
 
   // For every legs of every runners calculate ranking and time behind
-  for (let index = 0; index < course.length; index++) {
-    const leg = course[index];
-
+  for (let index = 0; index < clonedRunners[0].legs.length; index++) {
     // Make an array with splits and id for one leg
     const legSplits: RunnerForSort[] = clonedRunners.map((runner) => {
-      if (leg === null) return { id: runner.id, time: null, rankSplit: 0 };
-
-      const lg = runner.legs.find(
-        (l) =>
-          l?.finishControlCode === leg.finishControlCode &&
-          l?.startControlCode === leg.startControlCode
-      );
+      const lg = runner.legs[index];
 
       const time = lg !== null && lg !== undefined ? lg.timeOverall : null;
       return { id: runner.id, time, rankSplit: 0 };

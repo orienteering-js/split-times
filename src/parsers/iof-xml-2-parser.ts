@@ -261,9 +261,7 @@ function extractLegsFromPersonResult(
   personResult: Element
 ): ValueOrError<(RunnerLeg | null)[]> {
   const legTags = Array.from(personResult.querySelectorAll("SplitTime"));
-
-  /** @type {(RunnerLeg | null)[]} */
-  const legs = [];
+  const legs: (RunnerLeg | null)[] = [];
 
   for (let index = 0; index < legTags.length; index++) {
     const splitTime = legTags[index];

@@ -4,36 +4,34 @@ import type { Runner } from "@models/runner.ts";
 import type { SupermanSplit } from "@models/superman.ts";
 import { sortRunners } from "@utils/shared.ts";
 
+const FIRST_RUNNER_NOT_COMPLETE_MSG =
+  "First runner sould have a complete course";
+
 export function computeSplitRanksAndTimeBehind(
   runners: Runner[]
 ): ValueOrError<[Runner[], SupermanSplit[]]> {
   const clonedRunners = structuredClone(runners);
 
-  const course = clonedRunners[0].legs.map((leg) =>
-    leg === null
-      ? null
-      : {
-          startControlCode: leg.startControlCode,
-          finishControlCode: leg.finishControlCode,
-        }
-  );
+  if (
+    clonedRunners.length === 0 ||
+    clonedRunners[0].legs.some((l) => l === null)
+  ) {
+    return [
+      null,
+      {
+        code: "FIRST_RUNNER_NOT_COMPLETE",
+        message: FIRST_RUNNER_NOT_COMPLETE_MSG,
+      },
+    ];
+  }
 
   const supermanSplits: SupermanSplit[] = [];
 
   // For every legs of every runners calculate ranking and time behind
-  for (let index = 0; index < course.length; index++) {
-    const leg = course[index];
-
+  for (let index = 0; index < clonedRunners[0].legs.length; index++) {
     // Make an array with splits and id for one leg
     const legSplits: RunnerForSort[] = clonedRunners.map((runner) => {
-      if (leg === null) return { id: runner.id, time: null, rankSplit: 0 };
-
-      const lg = runner.legs.find(
-        (l) =>
-          l?.finishControlCode === leg.finishControlCode &&
-          l?.startControlCode === leg.startControlCode
-      );
-
+      const lg = runner.legs[index];
       const time = lg === undefined || lg === null ? null : lg.time;
       return { id: runner.id, time, rankSplit: 0 };
     });
@@ -46,7 +44,7 @@ export function computeSplitRanksAndTimeBehind(
         null,
         {
           code: "FIRST_RUNNER_NOT_COMPLETE",
-          message: "First runner should have a complete course.",
+          message: FIRST_RUNNER_NOT_COMPLETE_MSG,
         },
       ];
     }
@@ -66,7 +64,6 @@ export function computeSplitRanksAndTimeBehind(
         i === 0 ? i + 1 : computeRanksplit(legSplit, legSplits[i - 1], i);
 
       const runner = clonedRunners.find((r) => legSplit.id === r.id);
-
       const runnerLeg = runner?.legs[index];
 
       if (runnerLeg === null || runnerLeg === undefined) {
@@ -81,7 +78,7 @@ export function computeSplitRanksAndTimeBehind(
           null,
           {
             code: "FIRST_RUNNER_NOT_COMPLETE",
-            message: "First runner should have a complete course.",
+            message: FIRST_RUNNER_NOT_COMPLETE_MSG,
           },
         ];
       }

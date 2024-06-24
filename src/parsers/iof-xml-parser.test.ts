@@ -19,7 +19,7 @@ Deno.test("IOF XML sptitimes", async () => {
   );
 
   if (runners !== null) {
-    console.log(runners.map((r) => r.legs[27]));
+    console.log(runners.map((r) => r.legs[16]));
     assertEquals(runners[0].rank, 1);
   }
 });
