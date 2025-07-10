@@ -57,22 +57,26 @@ export function createSplitTimesFromGpsTracksAndCourse({
 
   for (const runnerTrack of runnerTracks) {
     const runnerControlPoints: (RunnerControlPoint | null)[] = [];
+    let firstPointInCircleIndex = -1;
 
     for (const controlPoint of controlPoints) {
       let minimumDistance = Infinity;
 
-      const firstPointInCircleIndex = runnerTrack.lats.findIndex(
-        (lat, index) => {
-          const lon = runnerTrack.lons[index]!;
+      for (let i = firstPointInCircleIndex; i < runnerTrack.lats.length; i++) {
+        if (i === -1) continue;
+        const lat = runnerTrack.lats[i]!;
+        const lon = runnerTrack.lons[i]!;
 
-          minimumDistance = haversineDistance(
-            [lon, lat],
-            [controlPoint.longitude, controlPoint.latitude]
-          );
+        minimumDistance = haversineDistance(
+          [lon, lat],
+          [controlPoint.longitude, controlPoint.latitude]
+        );
 
-          return minimumDistance <= CIRCLE_RADIUS;
+        if (minimumDistance <= CIRCLE_RADIUS) {
+          firstPointInCircleIndex = i;
+          break;
         }
-      );
+      }
 
       if (firstPointInCircleIndex === -1) {
         runnerControlPoints.push(null);
