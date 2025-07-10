@@ -157,11 +157,11 @@ export function createSplitTimesFromGpsTracksAndCourse({
     const runner2IsComplete = runner2.legs.every((leg) => leg !== null);
 
     if (runner1IsComplete && !runner2IsComplete) {
-      return -1;
+      return 1;
     }
 
     if (!runner1IsComplete && runner2IsComplete) {
-      return 1;
+      return -1;
     }
 
     return 0;
