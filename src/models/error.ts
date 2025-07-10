@@ -10,6 +10,7 @@ type SplitTimesError = {
     | "FIRST_RUNNER_NOT_COMPLETE"
     | "CONTROL_NOT_FOUND"
     | "INVALID_RUNNER"
+    | "NOT_ENOUTH_CONTROL_POINTS"
     | "UNKNOWN_ERROR";
   message: string;
 };
