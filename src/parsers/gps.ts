@@ -167,6 +167,8 @@ export function createSplitTimesFromGpsTracksAndCourse({
     return 0;
   });
 
+  // Comment fo deploying
+
   return computeSplitsRanksMistakes(runners);
 }
 
