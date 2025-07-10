@@ -25,7 +25,7 @@ type RunnerControlPoint = {
   time: number;
 };
 
-const CIRCLE_RADIUS = 20;
+const CIRCLE_RADIUS = 60;
 
 /**
  * Generates split times for runners based on their GPS tracks and course control points.
@@ -137,14 +137,20 @@ export function createSplitTimesFromGpsTracksAndCourse({
       });
     }
 
+    const someControlPointsAreNull = runnerControlPoints.some(
+      (c) => c === null
+    );
+
     runners.push({
       id: runnerTrack.id,
       firstName: runnerTrack.firstName,
       lastName: runnerTrack.lastName,
-      status: runnerControlPoints.some((c) => c === null) ? "not-ok" : "ok",
+      status: someControlPointsAreNull ? "not-ok" : "ok",
       startTime,
       time:
-        lastControlPoint !== null ? lastControlPoint.time - startTime : null,
+        someControlPointsAreNull || lastControlPoint === null
+          ? null
+          : lastControlPoint.time - startTime,
       legs,
       rank: null,
       timeBehind: null,
