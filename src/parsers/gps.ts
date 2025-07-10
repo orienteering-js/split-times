@@ -152,24 +152,18 @@ export function createSplitTimesFromGpsTracksAndCourse({
     });
   }
 
-  runners.sort((runner1, runner2) => {
-    const runner1IsComplete = runner1.legs.every((leg) => leg !== null);
-    const runner2IsComplete = runner2.legs.every((leg) => leg !== null);
+  const runnersWithNullLegds = runners.filter((runner) =>
+    runner.legs.some((leg) => leg === null)
+  );
 
-    if (runner1IsComplete && !runner2IsComplete) {
-      return 1;
-    }
+  const runnersWithCompleteLegs = runners.filter((runner) =>
+    runner.legs.every((leg) => leg !== null)
+  );
 
-    if (!runner1IsComplete && runner2IsComplete) {
-      return -1;
-    }
-
-    return 0;
-  });
-
-  // Comment fo deploying
-
-  return computeSplitsRanksMistakes(runners);
+  return computeSplitsRanksMistakes([
+    ...runnersWithCompleteLegs,
+    ...runnersWithNullLegds,
+  ]);
 }
 
 function toRadians(degrees: number): number {
