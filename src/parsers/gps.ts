@@ -144,7 +144,7 @@ export function createSplitTimesFromGpsTracksAndCourse({
       status: runnerControlPoints.some((c) => c === null) ? "not-ok" : "ok",
       startTime,
       time:
-        lastControlPoint !== null ? startTime - lastControlPoint.time : null,
+        lastControlPoint !== null ? lastControlPoint.time - startTime : null,
       legs,
       rank: null,
       timeBehind: null,
