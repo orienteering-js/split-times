@@ -152,6 +152,21 @@ export function createSplitTimesFromGpsTracksAndCourse({
     });
   }
 
+  runners.sort((runner1, runner2) => {
+    const runner1IsComplete = runner1.legs.every((leg) => leg !== null);
+    const runner2IsComplete = runner2.legs.every((leg) => leg !== null);
+
+    if (runner1IsComplete && !runner2IsComplete) {
+      return -1;
+    }
+
+    if (!runner1IsComplete && runner2IsComplete) {
+      return 1;
+    }
+
+    return 0;
+  });
+
   return computeSplitsRanksMistakes(runners);
 }
 
