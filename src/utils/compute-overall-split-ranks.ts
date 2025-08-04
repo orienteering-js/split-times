@@ -51,7 +51,7 @@ export function computeOverallSplitRanks(
       return true;
     });
 
-    // Compute rankOverall from filteredLegSplits
+    // Compute rankOverall and timeBehindOverall from filteredLegSplits
     for (let i = 0; i < filteredLegSplits.length; i++) {
       const legSplit = filteredLegSplits[i];
 
@@ -67,9 +67,24 @@ export function computeOverallSplitRanks(
           : computeRanksplit(legSplit, filteredLegSplits[i - 1], i);
 
       runnerLeg.rankOverall = legSplit.rankSplit;
+
+      const legOverallBestTime = filteredLegSplits[0];
+
+      if (legOverallBestTime.time === null) {
+        return [
+          null,
+          {
+            code: "FIRST_RUNNER_NOT_COMPLETE",
+            message: "At least one runner sould have a complete course",
+          },
+        ];
+      }
+
+      runnerLeg.timeBehindOverall =
+        runnerLeg.timeOverall - legOverallBestTime.time;
     }
 
-    // Compute timeBehindOverall and timeBehindSuperman from legSplits
+    // Compute timeBehindSuperman from legSplits
     for (let i = 0; i < legSplits.length; i++) {
       const legSplit = legSplits[i];
 
@@ -90,9 +105,6 @@ export function computeOverallSplitRanks(
           },
         ];
       }
-
-      runnerLeg.timeBehindOverall =
-        runnerLeg.timeOverall - legOverallBestTime.time;
 
       runnerLeg.timeBehindSuperman =
         runnerLeg.timeOverall - supermanSplits[legIndex].timeOverall;
