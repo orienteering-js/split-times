@@ -61,7 +61,7 @@ export function parseIOFXML2SplitTimesFile(
     }
 
     return computeSplitsRanksMistakes(runners);
-  } catch (e) {
+  } catch (_) {
     return [
       null,
       { code: "UNKNOWN_ERROR", message: "An unknown error occured." },

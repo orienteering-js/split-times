@@ -28,10 +28,10 @@ export function computeOverallSplitRanks(
   }
 
   // For every legs of every runners calculate ranking and time behind
-  for (let index = 0; index < clonedRunners[0].legs.length; index++) {
+  for (let legIndex = 0; legIndex < clonedRunners[0].legs.length; legIndex++) {
     // Make an array with splits and id for one leg
     const legSplits: RunnerForSort[] = clonedRunners.map((runner) => {
-      const lg = runner.legs[index];
+      const lg = runner.legs[legIndex];
 
       const time = lg !== null && lg !== undefined ? lg.timeOverall : null;
       return { id: runner.id, time, rankSplit: 0 };
@@ -46,13 +46,27 @@ export function computeOverallSplitRanks(
         i === 0 ? i + 1 : computeRanksplit(legSplit, legSplits[i - 1], i);
 
       const runner = clonedRunners.find((r) => legSplit.id === r.id);
-      const runnerLeg = runner?.legs[index];
+
+      if (runner === undefined) {
+        continue;
+      }
+
+      const runnerLeg = runner.legs[legIndex];
 
       if (runnerLeg === undefined || runnerLeg === null) {
         continue;
       }
 
-      runnerLeg.rankOverall = legSplit.rankSplit;
+      let isRankOverallNull = false;
+
+      for (let i = legIndex; i >= 0; i--) {
+        if (runner.legs[i] === null) {
+          isRankOverallNull = true;
+          break;
+        }
+      }
+
+      runnerLeg.rankOverall = isRankOverallNull ? null : legSplit.rankSplit;
       const legOverallBestTime = legSplits[0];
 
       if (legOverallBestTime.time === null) {
@@ -69,7 +83,7 @@ export function computeOverallSplitRanks(
         runnerLeg.timeOverall - legOverallBestTime.time;
 
       runnerLeg.timeBehindSuperman =
-        runnerLeg.timeOverall - supermanSplits[index].timeOverall;
+        runnerLeg.timeOverall - supermanSplits[legIndex].timeOverall;
     }
   }
 

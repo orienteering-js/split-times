@@ -8,7 +8,7 @@ export interface RunnerLeg {
   time: number;
   rankSplit: number;
   timeBehindSplit: number;
-  rankOverall: number;
+  rankOverall: number | null;
   timeBehindOverall: number;
   timeBehindSuperman: number;
   isMistake: boolean;

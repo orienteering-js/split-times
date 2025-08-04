@@ -1,5 +1,5 @@
 import { parseIofXmlSplitTimesFile } from "@parsers/iof-xml-parser.ts";
-import { assert, assertEquals } from "@std/assert";
+import { assertEquals } from "@std/assert";
 import { DOMParser } from "linkedom";
 
 const parser = new DOMParser();
