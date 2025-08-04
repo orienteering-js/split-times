@@ -17,14 +17,13 @@ export function parseIofXmlSplitTimesFile(
   xmlDocument: XMLDocument,
   className: string,
   timeZone: string,
-  date: string
+  date: string,
 ): ValueOrError<Runner[]> {
   try {
-    const isIofXml3 =
-      xmlDocument
-        .querySelector("ResultList")
-        ?.getAttribute("iofVersion")
-        ?.trim() === "3.0";
+    const isIofXml3 = xmlDocument
+      .querySelector("ResultList")
+      ?.getAttribute("iofVersion")
+      ?.trim() === "3.0";
 
     if (isIofXml3) {
       return parseIOFXML3SplitTimesFile(xmlDocument, className, timeZone);

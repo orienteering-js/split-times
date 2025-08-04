@@ -69,7 +69,7 @@ export function createSplitTimesFromGpsTracksAndCourse({
 
         minimumDistance = haversineDistance(
           [lon, lat],
-          [controlPoint.longitude, controlPoint.latitude]
+          [controlPoint.longitude, controlPoint.latitude],
         );
 
         if (minimumDistance <= CIRCLE_RADIUS) {
@@ -91,7 +91,7 @@ export function createSplitTimesFromGpsTracksAndCourse({
 
         const distance = haversineDistance(
           [lon, lat],
-          [controlPoint.longitude, controlPoint.latitude]
+          [controlPoint.longitude, controlPoint.latitude],
         );
 
         if (distance > CIRCLE_RADIUS) {
@@ -142,7 +142,7 @@ export function createSplitTimesFromGpsTracksAndCourse({
     }
 
     const someControlPointsAreNull = runnerControlPoints.some(
-      (c) => c === null
+      (c) => c === null,
     );
 
     runners.push({
@@ -151,10 +151,9 @@ export function createSplitTimesFromGpsTracksAndCourse({
       lastName: runnerTrack.lastName,
       status: someControlPointsAreNull ? "not-ok" : "ok",
       startTime,
-      time:
-        someControlPointsAreNull || lastControlPoint === null
-          ? null
-          : lastControlPoint.time - startTime,
+      time: someControlPointsAreNull || lastControlPoint === null
+        ? null
+        : lastControlPoint.time - startTime,
       legs,
       rank: null,
       timeBehind: null,
@@ -162,9 +161,7 @@ export function createSplitTimesFromGpsTracksAndCourse({
     });
   }
 
-  const runnersWithNullLegds = runners.filter((runner) =>
-    runner.legs.some((leg) => leg === null)
-  );
+  const runnersWithNullLegds = runners.filter((runner) => runner.legs.some((leg) => leg === null));
 
   const runnersWithCompleteLegs = runners.filter((runner) =>
     runner.legs.every((leg) => leg !== null)
@@ -192,8 +189,7 @@ function haversineDistance(coord1: Coordinate, coord2: Coordinate): number {
   const deltaLat = lat2 - lat1;
   const deltaLon = lon2 - lon1;
 
-  const a =
-    Math.sin(deltaLat / 2) ** 2 +
+  const a = Math.sin(deltaLat / 2) ** 2 +
     Math.cos(lat1) * Math.cos(lat2) * Math.sin(deltaLon / 2) ** 2;
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 

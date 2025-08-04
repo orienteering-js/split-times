@@ -4,11 +4,10 @@ import type { Runner } from "@models/runner.ts";
 import type { SupermanSplit } from "@models/superman.ts";
 import { sortRunners } from "@utils/shared.ts";
 
-const FIRST_RUNNER_NOT_COMPLETE_MSG =
-  "First runner sould have a complete course";
+const FIRST_RUNNER_NOT_COMPLETE_MSG = "First runner sould have a complete course";
 
 export function computeSplitRanksAndTimeBehind(
-  runners: Runner[]
+  runners: Runner[],
 ): ValueOrError<[Runner[], SupermanSplit[]]> {
   const clonedRunners = structuredClone(runners);
 
@@ -51,17 +50,15 @@ export function computeSplitRanksAndTimeBehind(
 
     supermanSplits.push({
       time: bestSplitTime,
-      timeOverall:
-        index === 0
-          ? bestSplitTime
-          : supermanSplits[index - 1].timeOverall + bestSplitTime,
+      timeOverall: index === 0
+        ? bestSplitTime
+        : supermanSplits[index - 1].timeOverall + bestSplitTime,
     });
 
     for (let i = 0; i < legSplits.length; i++) {
       const legSplit = legSplits[i];
 
-      legSplit.rankSplit =
-        i === 0 ? i + 1 : computeRanksplit(legSplit, legSplits[i - 1], i);
+      legSplit.rankSplit = i === 0 ? i + 1 : computeRanksplit(legSplit, legSplits[i - 1], i);
 
       const runner = clonedRunners.find((r) => legSplit.id === r.id);
       const runnerLeg = runner?.legs[index];
@@ -93,7 +90,7 @@ export function computeSplitRanksAndTimeBehind(
 export function computeRanksplit(
   legSplit: RunnerForSort,
   previousLegSplit: RunnerForSort,
-  index: number
+  index: number,
 ) {
   if (legSplit.time === previousLegSplit.time) {
     return previousLegSplit.rankSplit;

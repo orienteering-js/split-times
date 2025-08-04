@@ -6,7 +6,7 @@ export function isRunner(runner: Runner | null): runner is Runner {
 }
 
 export function isNotNullRunnerLeg(
-  runnerLeg: RunnerLeg | null
+  runnerLeg: RunnerLeg | null,
 ): runnerLeg is RunnerLeg {
   return runnerLeg !== null;
 }

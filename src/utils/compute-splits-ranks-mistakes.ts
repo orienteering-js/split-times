@@ -6,11 +6,10 @@ import computeRunnersRanks from "@utils/compute-ranks.ts";
 import { computeSplitRanksAndTimeBehind } from "@utils/compute-split-ranks-time-behind.ts";
 
 export function computeSplitsRanksMistakes(
-  runners: Runner[]
+  runners: Runner[],
 ): ValueOrError<Runner[]> {
   const rankedRunners = computeRunnersRanks(runners);
-  const [runnersAndSuperman, splitsError] =
-    computeSplitRanksAndTimeBehind(rankedRunners);
+  const [runnersAndSuperman, splitsError] = computeSplitRanksAndTimeBehind(rankedRunners);
 
   if (splitsError !== null) {
     return [null, splitsError];
@@ -18,8 +17,10 @@ export function computeSplitsRanksMistakes(
 
   const [splitRankedRunners, supermanSplits] = runnersAndSuperman;
 
-  const [overallSplitRankedRunners, overallSplitRankedRunnersError] =
-    computeOverallSplitRanks(splitRankedRunners, supermanSplits);
+  const [overallSplitRankedRunners, overallSplitRankedRunnersError] = computeOverallSplitRanks(
+    splitRankedRunners,
+    supermanSplits,
+  );
 
   if (overallSplitRankedRunnersError !== null) {
     return [null, overallSplitRankedRunnersError];
@@ -27,7 +28,7 @@ export function computeSplitsRanksMistakes(
 
   const runnersWithMistakes = computeRunnersMistakes(
     overallSplitRankedRunners,
-    supermanSplits
+    supermanSplits,
   );
 
   return [runnersWithMistakes, null];

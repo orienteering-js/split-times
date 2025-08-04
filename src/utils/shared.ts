@@ -29,7 +29,7 @@ export function arrayAverage(a: (number | null)[]): number {
 
 export function getStartControlCode(
   legTags: Element[],
-  index: number
+  index: number,
 ): ValueOrError<string> {
   if (index === 0) return ["start", null];
 
@@ -81,7 +81,7 @@ export function parseTimeFromString(str: string): ValueOrError<number> {
 
 export function sortRunners(
   runnerA: Runner | RunnerForSort,
-  runnerB: Runner | RunnerForSort
+  runnerB: Runner | RunnerForSort,
 ) {
   if (runnerA.time !== null && runnerB.time !== null) {
     return runnerA.time - runnerB.time;

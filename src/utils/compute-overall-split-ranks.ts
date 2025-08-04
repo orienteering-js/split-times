@@ -39,34 +39,42 @@ export function computeOverallSplitRanks(
 
     legSplits.sort(sortRunners);
 
+    // Remove runners that have null legs before this leg (so we dont compute rank overall for them for this leg).
+    const filteredLegSplits = legSplits.filter((legSplit) => {
+      const runner = clonedRunners.find((r) => legSplit.id === r.id);
+      if (runner === undefined) return false;
+
+      for (let i = legIndex; i >= 0; i--) {
+        if (runner.legs[i] === null) return false;
+      }
+
+      return true;
+    });
+
+    // Compute rankOverall from filteredLegSplits
+    for (let i = 0; i < filteredLegSplits.length; i++) {
+      const legSplit = legSplits[i];
+
+      const runnerLeg = clonedRunners.find((r) => legSplit.id === r.id)?.legs[
+        legIndex
+      ];
+
+      if (runnerLeg === undefined || runnerLeg === null) continue;
+
+      runnerLeg.rankOverall =
+        i === 0 ? i + 1 : computeRanksplit(legSplit, legSplits[i - 1], i);
+    }
+
+    // Compute timeBehindOverall and timeBehindSuperman from legSplits
     for (let i = 0; i < legSplits.length; i++) {
       const legSplit = legSplits[i];
 
-      legSplit.rankSplit =
-        i === 0 ? i + 1 : computeRanksplit(legSplit, legSplits[i - 1], i);
+      const runnerLeg = clonedRunners.find((r) => legSplit.id === r.id)?.legs[
+        legIndex
+      ];
 
-      const runner = clonedRunners.find((r) => legSplit.id === r.id);
+      if (runnerLeg === undefined || runnerLeg === null) continue;
 
-      if (runner === undefined) {
-        continue;
-      }
-
-      const runnerLeg = runner.legs[legIndex];
-
-      if (runnerLeg === undefined || runnerLeg === null) {
-        continue;
-      }
-
-      let isRankOverallNull = false;
-
-      for (let i = legIndex; i >= 0; i--) {
-        if (runner.legs[i] === null) {
-          isRankOverallNull = true;
-          break;
-        }
-      }
-
-      runnerLeg.rankOverall = isRankOverallNull ? null : legSplit.rankSplit;
       const legOverallBestTime = legSplits[0];
 
       if (legOverallBestTime.time === null) {

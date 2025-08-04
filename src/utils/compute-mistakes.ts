@@ -6,7 +6,7 @@ import type { RunnerLeg } from "@models/runner-leg.ts";
 export default function computeRunnersMistakes(
   runners: Runner[],
   supermanSplits: SupermanSplit[],
-  mistakeDetectionRatio = 1.2
+  mistakeDetectionRatio = 1.2,
 ) {
   const clonedRunners = structuredClone(runners);
 
@@ -17,30 +17,28 @@ export default function computeRunnersMistakes(
 
     const averagePercentage = arrayAverage(percentagesBehindSuperman);
 
-    const clearedPercentageBehindSuperman =
-      clearPercentageBehindAndComputeIsMistake(
-        percentagesBehindSuperman,
-        runner,
-        averagePercentage,
-        mistakeDetectionRatio
-      );
+    const clearedPercentageBehindSuperman = clearPercentageBehindAndComputeIsMistake(
+      percentagesBehindSuperman,
+      runner,
+      averagePercentage,
+      mistakeDetectionRatio,
+    );
 
     // Recalculate average without mistakes
     const clearedAveragePercentage = arrayAverage(
-      clearedPercentageBehindSuperman
+      clearedPercentageBehindSuperman,
     );
 
-    const newClearedPercentagesBehindSuperman =
-      clearPercentageBehindAndComputeIsMistake(
-        percentagesBehindSuperman,
-        runner,
-        clearedAveragePercentage,
-        mistakeDetectionRatio
-      );
+    const newClearedPercentagesBehindSuperman = clearPercentageBehindAndComputeIsMistake(
+      percentagesBehindSuperman,
+      runner,
+      clearedAveragePercentage,
+      mistakeDetectionRatio,
+    );
 
     // Recalculate average without mistakes
     const newClearedAveragePercentage = arrayAverage(
-      newClearedPercentagesBehindSuperman
+      newClearedPercentagesBehindSuperman,
     );
 
     runner.totalTimeLost = runner.legs.reduce(
@@ -51,14 +49,14 @@ export default function computeRunnersMistakes(
 
         const timeWithoutMistake = Math.round(
           // First runner is supposed to have only complete legs
-          supermanSplits[legIndex].time * newClearedAveragePercentage
+          supermanSplits[legIndex].time * newClearedAveragePercentage,
         );
 
         leg.timeLoss = leg.time - timeWithoutMistake;
 
         return timeLost + leg.timeLoss;
       },
-      0
+      0,
     );
   });
 
@@ -69,7 +67,7 @@ function clearPercentageBehindAndComputeIsMistake(
   percentagesBehindSuperman: (number | null)[],
   runner: Runner,
   averagePercentage: number,
-  mistakeDetectionRatio: number
+  mistakeDetectionRatio: number,
 ) {
   return percentagesBehindSuperman.map((percentage, legIndex) => {
     const leg = runner.legs[legIndex];

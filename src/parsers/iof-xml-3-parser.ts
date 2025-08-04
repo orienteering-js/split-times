@@ -18,7 +18,7 @@ import { getStartControlCode } from "@utils/shared.ts";
 export function parseIOFXML3SplitTimesFile(
   xmlDocument: XMLDocument,
   classIdOrName: string,
-  timeZone: string
+  timeZone: string,
 ): ValueOrError<Runner[]> {
   try {
     const IOFXMLVersion = xmlDocument
@@ -33,7 +33,7 @@ export function parseIOFXML3SplitTimesFile(
     }
 
     const classResults = Array.from(
-      xmlDocument.querySelectorAll("ClassResult")
+      xmlDocument.querySelectorAll("ClassResult"),
     );
 
     let classResult = classResults.find((classR) => {
@@ -78,7 +78,7 @@ export function parseIOFXML3SplitTimesFile(
 
 function getRunners(
   personResults: NodeListOf<Element>,
-  timeZone: string
+  timeZone: string,
 ): ValueOrError<Runner[]> {
   const runners: Runner[] = [];
 
@@ -105,7 +105,7 @@ function getRunners(
 
     const [startTime, startTimeError] = computeStartOrFinishTime(
       startTimeTag,
-      timeZone
+      timeZone,
     );
 
     if (startTimeError !== null) return [null, startTimeError];
@@ -195,7 +195,7 @@ function getRunners(
 
 function computeLastLeg(
   time: number | null,
-  legs: (RunnerLeg | null)[]
+  legs: (RunnerLeg | null)[],
 ): RunnerLeg | null {
   const secondLastLeg = legs.at(-1);
 
@@ -220,7 +220,7 @@ function computeLastLeg(
 
 function computeStartOrFinishTime(
   startOrFinishTimeTag: Element | null,
-  timeZone: string
+  timeZone: string,
 ): ValueOrError<number> {
   if (
     startOrFinishTimeTag === null ||
@@ -245,7 +245,7 @@ function computeStartOrFinishTime(
 }
 
 function extractLegsFromPersonResult(
-  personResult: Element
+  personResult: Element,
 ): ValueOrError<(RunnerLeg | null)[]> {
   const legTags = Array.from(personResult.querySelectorAll("SplitTime"));
 
@@ -280,7 +280,7 @@ function extractLegsFromPersonResult(
 
     const [startControlCode, startControlCodeError] = getStartControlCode(
       legTags,
-      index
+      index,
     );
 
     if (startControlCodeError !== null) {
@@ -333,7 +333,7 @@ function extractLegsFromPersonResult(
 function getTime(
   legTags: Element[],
   index: number,
-  timeOverall: number
+  timeOverall: number,
 ): ValueOrError<number> {
   if (index === 0) return [timeOverall, null];
 

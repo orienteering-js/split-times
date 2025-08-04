@@ -18,10 +18,9 @@ export default function computeRunnersRanks(runners: Runner[]) {
       return;
     }
 
-    runner.rank =
-      runner.time === clonedRunners[index - 1].time
-        ? clonedRunners[index - 1].rank
-        : index + 1;
+    runner.rank = runner.time === clonedRunners[index - 1].time
+      ? clonedRunners[index - 1].rank
+      : index + 1;
 
     runner.timeBehind = bestTime !== null ? runner.time - bestTime : null;
   });

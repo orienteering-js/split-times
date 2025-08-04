@@ -44,14 +44,14 @@ const iofXmlSplitTimesFile = readFileSync("file.xml");
 
 const xmlDocument = new DOMParser().parseFromString(
   iofXmlSplitTimesFile,
-  "text/xml"
+  "text/xml",
 );
 
 const [runners, error] = parseIofXmlSplitTimesFile(
   xmlDocument,
   "H21",
   "+02:00",
-  "2024-05-14"
+  "2024-05-14",
 );
 
 if (error !== null) {

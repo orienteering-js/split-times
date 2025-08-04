@@ -18,7 +18,7 @@ export function parseIOFXML2SplitTimesFile(
   xmlDocument: XMLDocument,
   className: string,
   timeZone: string,
-  date: string
+  date: string,
 ): ValueOrError<Runner[]> {
   try {
     const IOFXMLVersion = xmlDocument
@@ -33,7 +33,7 @@ export function parseIOFXML2SplitTimesFile(
     }
 
     const classResults = Array.from(
-      xmlDocument.querySelectorAll("ClassResult")
+      xmlDocument.querySelectorAll("ClassResult"),
     );
 
     const classResult = classResults.find((classR) => {
@@ -70,7 +70,6 @@ export function parseIOFXML2SplitTimesFile(
 }
 
 /**
- *
  * @param personResults
  * @param date A date in the YYYY-MM-DD format
  * @param timeZone
@@ -78,7 +77,7 @@ export function parseIOFXML2SplitTimesFile(
 function getRunners(
   personResults: NodeListOf<Element>,
   date: string,
-  timeZone: string
+  timeZone: string,
 ): ValueOrError<Runner[]> {
   const runners: Runner[] = [];
 
@@ -100,16 +99,14 @@ function getRunners(
 
     const id = crypto.randomUUID();
 
-    const lastName =
-      personResult.querySelector("Person PersonName Family")?.textContent ?? "";
-    const firstName =
-      personResult.querySelector("Person PersonName Given")?.textContent ?? "";
+    const lastName = personResult.querySelector("Person PersonName Family")?.textContent ?? "";
+    const firstName = personResult.querySelector("Person PersonName Given")?.textContent ?? "";
 
     const startTimeTag = personResult.querySelector("Result StartTime");
     const [startTime, startTimeError] = computeStartOrFinishTime(
       startTimeTag,
       date,
-      timeZone
+      timeZone,
     );
 
     if (startTimeError !== null) {
@@ -211,7 +208,7 @@ function getRunners(
 
 function computeLastLeg(
   time: number | null,
-  legs: (RunnerLeg | null)[]
+  legs: (RunnerLeg | null)[],
 ): RunnerLeg | null {
   const secondLastLeg = legs.at(-1);
 
@@ -219,8 +216,9 @@ function computeLastLeg(
     time == null ||
     secondLastLeg === null ||
     secondLastLeg?.timeOverall === undefined
-  )
+  ) {
     return null;
+  }
 
   const startControlCode = secondLastLeg.finishControlCode;
 
@@ -236,7 +234,7 @@ function computeLastLeg(
 function computeStartOrFinishTime(
   startOrFinishTimeTag: Element | null,
   date: string,
-  timeZone: string
+  timeZone: string,
 ): ValueOrError<number> {
   if (
     startOrFinishTimeTag === null ||
@@ -258,7 +256,7 @@ function computeStartOrFinishTime(
 }
 
 function extractLegsFromPersonResult(
-  personResult: Element
+  personResult: Element,
 ): ValueOrError<(RunnerLeg | null)[]> {
   const legTags = Array.from(personResult.querySelectorAll("SplitTime"));
   const legs: (RunnerLeg | null)[] = [];
@@ -281,7 +279,7 @@ function extractLegsFromPersonResult(
 
     const [startControlCode, startControlCodeError] = getStartControlCode(
       legTags,
-      index
+      index,
     );
 
     if (startControlCodeError !== null) {
@@ -329,7 +327,7 @@ function extractLegsFromPersonResult(
 function getTime(
   legTags: Element[],
   index: number,
-  timeOverall: number
+  timeOverall: number,
 ): ValueOrError<number> {
   if (index === 0) return [timeOverall, null];
 
@@ -342,7 +340,7 @@ function getTime(
   }
 
   const [previousControlTimeOverall, timeOverallError] = parseTimeFromString(
-    previousControlTimeString
+    previousControlTimeString,
   );
   if (timeOverallError !== null) return [null, timeOverallError];
 
