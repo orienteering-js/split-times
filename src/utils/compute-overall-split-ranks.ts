@@ -96,6 +96,9 @@ export function computeOverallSplitRanks(
 
       runnerLeg.timeBehindSuperman =
         runnerLeg.timeOverall - supermanSplits[legIndex].timeOverall;
+
+      // TODO: fix this
+      if (runnerLeg.rankOverall === 0) runnerLeg.rankOverall = null;
     }
   }
 
