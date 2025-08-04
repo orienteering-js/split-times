@@ -53,7 +53,7 @@ export function computeOverallSplitRanks(
 
     // Compute rankOverall from filteredLegSplits
     for (let i = 0; i < filteredLegSplits.length; i++) {
-      const legSplit = legSplits[i];
+      const legSplit = filteredLegSplits[i];
 
       const runnerLeg = clonedRunners.find((r) => legSplit.id === r.id)?.legs[
         legIndex
@@ -62,7 +62,9 @@ export function computeOverallSplitRanks(
       if (runnerLeg === undefined || runnerLeg === null) continue;
 
       legSplit.rankSplit =
-        i === 0 ? i + 1 : computeRanksplit(legSplit, legSplits[i - 1], i);
+        i === 0
+          ? i + 1
+          : computeRanksplit(legSplit, filteredLegSplits[i - 1], i);
 
       runnerLeg.rankOverall = legSplit.rankSplit;
     }
