@@ -61,8 +61,10 @@ export function computeOverallSplitRanks(
 
       if (runnerLeg === undefined || runnerLeg === null) continue;
 
-      runnerLeg.rankOverall =
+      legSplit.rankSplit =
         i === 0 ? i + 1 : computeRanksplit(legSplit, legSplits[i - 1], i);
+
+      runnerLeg.rankOverall = legSplit.rankSplit;
     }
 
     // Compute timeBehindOverall and timeBehindSuperman from legSplits
